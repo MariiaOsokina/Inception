@@ -18,7 +18,12 @@ The project must be run inside a virtual machine, as required by the subject. Al
 
 The `.env` file holds the non-sensitive configuration and must be created at `srcs/.env`. It is ignored by git, so it is not included in the repository and has to be created manually.
 
-It must contain the following variables:
+The srcs/ folder already exists in the repository, so only the .env file itself needs to be created inside it.
+Create and open the file with a text editor:
+```
+nano srcs/.env
+```
+Then add the following variables:
 
 ```
 DOMAIN_NAME=mosokina.42.fr
@@ -40,7 +45,8 @@ WP_USER_EMAIL=guest@example.com
 
 ### Secret files
 
-Passwords are stored as Docker secrets in the `secrets/` folder at the root of the project. Like the `.env` file, this folder is ignored by git and is not included in the repository, so the files must be created manually.
+Passwords are stored as Docker secrets in the `secrets/` folder at the root of the project. 
+Like the `.env` file, this folder is ignored by git and is not included in the repository, so  both the folder and the files must be created manually.
 
 Three files are required:
 
@@ -50,9 +56,11 @@ Three files are required:
   - line 1 — the WordPress administrator's password
   - line 2 — the second (non-administrator) user's password
 
-Example of creating the files:
+Since the secrets/ folder does not exist in a fresh clone, it must be created first. Example of creating the folder and files:
+
 
 ```
+mkdir -p secrets
 echo "your_db_user_password" > secrets/db_password.txt
 echo "your_root_password" > secrets/db_root_password.txt
 printf "your_wp_admin_password\nyour_wp_user_password\n" > secrets/credentials.txt
